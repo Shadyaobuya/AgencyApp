@@ -46,4 +46,11 @@ with open('real-estate.csv', 'r') as file:
             csv_data.extend(list(reader))
 
 sorted=MergeSort(csv_data)
-print(sorted)
+# print(sorted.data)
+with open('write.csv', 'w') as file:
+    # create the csv writer
+    writer = csv.writer(file)
+
+    # write a row to the csv file
+    writer.writerow(sorted.data)
+# print(writer)
