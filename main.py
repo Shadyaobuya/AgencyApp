@@ -1,4 +1,7 @@
 import csv
+import click
+
+
 
 class MergeSort():
     def  __init__(self, data):
@@ -53,4 +56,38 @@ with open('write.csv', 'w') as file:
 
     # write a row to the csv file
     writer.writerow(sorted.data)
-# print(writer)
+
+@click.command()
+@click.option("--city", prompt="Search for Home using Adress City", help="Provide the Adress City")
+def search_data(city):
+    
+    arr=sorted.data
+    print(len(arr))
+    low=0
+    high=len(arr)-1
+    while (low < high):
+        mid = low + (high - low)//2
+        result = (city == arr[mid])
+        # Check if city is present at mid
+        if (result == 0):
+            click.echo("Des not exist")
+            return mid - 1
+            
+        # If city greater, ignore left half
+        if (result > 0):
+            print("hey")
+            low = mid + 1
+        # If city is smaller, ignore right half
+        else:
+            high = mid - 1
+    print("hu")
+    return -1
+   
+
+if __name__ == '__main__':
+    result = search_data()
+    if result==-1:
+        click.echo("Des not exist")
+    else:
+        click.echo("exists")
+            
